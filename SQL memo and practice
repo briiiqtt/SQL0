@@ -1,0 +1,56 @@
+--  #한번은 꼭 틀릴 것 같은 것
+
+--  NOT IN (1, 2, 3)
+--      = NOT IN (1 or 2 or 3)
+--      = NOT IN (not 1 and not 2 and not 3)
+-- 의도한대로 하려면
+--       where manager_id IN (1,2)
+ --       and manager_id is null
+
+
+------------------------------------------------------------------------------------------------------------------
+예제
+SELECT last_name, salary
+FROM employees
+WHERE salary > 12000
+ORDER BY SALARY ASC;
+
+SELECT last_name, department_id
+FROM employees 
+WHERE employee_id = 176;
+
+SELECT last_name, salary
+FROM employees
+WHERE salary NOT BETWEEN 5000 AND 12000;
+
+SELECT last_name, employee_id, hire_date
+FROM employees 
+WHERE hire_date BETWEEN '1998/02/20' AND '1998/05/01';
+
+SELECT last_name, department_id
+FROM employees
+WHERE department_id IN (20,50)
+ORDER BY last_name ASC;
+
+SELECT last_name, salary
+FROM employees
+WHERE (department_id = 20 OR department_id = 50) AND salary BETWEEN 5000 AND 12000;
+-----------------------------------------------------
+SELECT last_name, hire_date
+FROM employees
+WHERE SUBSTR(hire_date
+----------------------------------------------------
+SELECT TRUNC(dt, sysdate)
+FROM dual;
+
+----------######################################
+
+SELECT department_id,job_id, SUM(salary), COUNT(*)
+FROM employees
+GROUP BY department_id, job_id
+ORDER BY 1,2;
+--##################### 밑에건 왜안됨
+SELECT department_id,job_id, last_name, SUM(salary), COUNT(*)
+FROM employees
+GROUP BY department_id, job_id
+ORDER BY 1,2;
